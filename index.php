@@ -67,14 +67,14 @@
 
 
     <!-- Add Question -->
-    <div  id='addquestion'  class='d-flex align-items-center justify-content-center  container  p-5 my-5 bg-success text-white''>
+    <div  id='addquestion'  class='d-none  d-flex align-items-center justify-content-center  container  p-5 my-5 bg-success text-white''>
     <label for="titel"> Add a Question:</label>
     <input class='btn btn-light m-4' type='text' name='question' id='question' value=''></input>
     <input class='btn btn-light m-4' type='submit' name='addquestion' id='addquestion' value='Add a Question'></input>
     </div>
     
     <!-- Add User -->
-    <div id='adduser' class='d-flex align-items-center justify-content-center container  p-5 my-5 bg-success text-white'>
+    <div id='adduser' class='d-none  d-flex align-items-center justify-content-center container  p-5 my-5 bg-success text-white'>
     <label for="titel"> Add a User:</label>
     <input class='btn btn-light m-4' type='text' name='username' id='username' value=''></input>
     <input class='btn btn-light m-4' type='password' name='userpw' id='userpw' value=''></input>

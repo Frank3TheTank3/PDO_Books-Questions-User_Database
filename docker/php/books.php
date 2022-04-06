@@ -4,7 +4,8 @@
 $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
         $sql = "SELECT * FROM Books3";
         
-
+function showAllBooks()
+{}
 
     if(isset($_POST['go'])){
         
@@ -88,47 +89,99 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
         }
 
         if(isset($_POST['addtitel'])){
-                if(isset($_POST['titel'])){
+                if(!empty($_POST['titel'])){
                     
                     $name = $_POST['titel'];
                 }
-                if(isset($_POST['author'])){
+                else
+                {
+                    echo'Titel Missing';
+                    echo "<script>alert('Titel Missing')</script> ";  
+                }
+                
+                if(!empty($_POST['author'])){
                     
                     $author = $_POST['author'];
                 }
-                if(isset($_POST['genre'])){
+                else
+                {
+                    echo'Author Missing';
+                    echo "<script>alert('Author Missing')</script> ";  
+                }
+
+                if(!empty($_POST['genre'])){
                     
                     $genre = $_POST['genre'];
                 }
-                if(isset($_POST['height'])){
+                else
+                {
+                    echo'Genre Missing';
+                    echo "<script>alert('Genre Missing')</script> ";  
+                }
+
+                if(!empty($_POST['height'])){
                     
                     $height = $_POST['height'];
                 }
-                if(isset($_POST['publisher'])){
+                else
+                {
+                    echo'Height Missing';
+                    echo "<script>alert('Height Missing')</script> ";  
+                }
+
+                if(!empty($_POST['publisher'])){
                     
                     $publisher = $_POST['publisher'];
                 }
-                
-                
-                
-                
-                $sql = 'INSERT INTO Books3(Title, Author, Genre, Height, Publisher) VALUES(:name, :author, :genre, :height, :publisher)';
+                else
+                {
+                    echo'Publisher Missing';
+                    echo "<script>alert('Publisher Missing')</script> ";  
+                }
 
-                $statement = $pdo->prepare($sql);
+                if(!empty($_POST['titel']) && !empty($_POST['author']) && !empty($_POST['genre']) && !empty($_POST['height']) && !empty($_POST['publisher']))
+                {
+               
+                
+                    $sql = 'INSERT INTO Books3(Title, Author, Genre, Height, Publisher) VALUES(:name, :author, :genre, :height, :publisher)';
 
-                $statement->execute([
-                    ':name' => $name,
-                    ':author' => $author,
-                    ':genre' => $genre,
-                    ':height' => $height,
-                    ':publisher' => $publisher
-                ]);
+                    $statement = $pdo->prepare($sql);
 
-                $publisher_id = $pdo->lastInsertId();
+                    $statement->execute([
+                        ':name' => $name,
+                        ':author' => $author,
+                        ':genre' => $genre,
+                        ':height' => $height,
+                        ':publisher' => $publisher
+                    ]);
 
-                echo 'The publisher id ' . $publisher_id . ' was inserted';
-        
-            }
+                    $publisher_id = $pdo->lastInsertId();
+
+                    echo 'The publisher id ' . $publisher_id . ' was inserted';
+
+                    foreach ($pdo->query($sql) as $row) {
+                        echo '<div class="container  p-5 my-5 bg-primary text-white ">';
+                        echo $row['Title']."<br />";
+                        echo $row['Author']."<br />";
+                        echo $row['Genre']."<br /><br />";
+                        echo $row['Height']."<br /><br />";
+                        echo $row['Publisher']."<br /><br />";
+                        echo '</div>';
+                        }
+                        echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
+                        
+                        echo "<script> toggleAddBooks()</script>";
+                        unset($_POST);
+                        $_POST = array();
+                        session_unset();
+                    }
+                else
+                {
+                    echo'Field Information Missing';
+                    echo "<script>alert('Please fill out all the fields')</script> ";  
+                }
+            } 
+            
         
 
         

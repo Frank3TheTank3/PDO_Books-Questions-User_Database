@@ -19,15 +19,7 @@ function ClickMe()
 
     }
 }
-
-var element = document.getElementById('addbook');
-element.classList.add('d-none');
-
-var element = document.getElementById('addquestion');
-element.classList.add('d-none');
-
-var element = document.getElementById('adduser');
-element.classList.add('d-none');
+toggleCloseAll();
 
 
 
