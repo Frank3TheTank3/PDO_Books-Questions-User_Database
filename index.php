@@ -67,9 +67,19 @@
 
 
     <!-- Add Question -->
-    <div  id='addquestion'  class='d-none  d-flex align-items-center justify-content-center  container  p-5 my-5 bg-success text-white''>
+    <div id='addquestion' class='d-none  flex-column justify-content-center container p-5 my-5 bg-success text-white'>
     <label for="titel"> Add a Question:</label>
     <input class='btn btn-light m-4' type='text' name='question' id='question' value=''></input>
+    <label for="publisher"> Add a Answer A:</label>
+    <input class='btn btn-light m-4' type='text' name='answera' id='answera' value=''></input>
+    <label for="publisher"> Add a Answer B:</label>
+    <input class='btn btn-light m-4' type='text' name='answerb' id='answerb' value=''></input>
+    <label for="publisher"> Add a Answer C:</label>
+    <input class='btn btn-light m-4' type='text' name='answerc' id='answerc' value=''></input>
+    <label for="publisher"> Add a Answer D:</label>
+    <input class='btn btn-light m-4' type='text' name='answerd' id='answerd' value=''></input>
+    <label for="publisher"> Add a Correct Answer:</label>
+    <input class='btn btn-light m-4' type='text' name='correct' id='correct' value=''></input>
     <input class='btn btn-light m-4' type='submit' name='addquestion' id='addquestion' value='Add a Question'></input>
     </div>
     

@@ -6,7 +6,7 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
 
         $sql2 = "SELECT * FROM Answers WHERE QuestionIndex = 1";
 
-        $sql3 = "SELECT * FROM Questions, Answers WHERE Questions.QuestionIndex = '1'";
+        $sql3 = "SELECT * FROM Questions, Answers WHERE Questions.QuestionIndex = Answers.QuestionIndex";
         
  
 //If set show questions
@@ -19,7 +19,8 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
             echo $row['Question']."<br /><br />";
             echo $row['Answer_A']."<br />";
             echo $row['Answer_B']."<br />";
-            echo $row['Answer_C']."<br /><br />";
+            echo $row['Answer_C']."<br />";
+            echo $row['Answer_D']."<br /><br />";
             echo 'Correct Answer: ' . $row['CorrectAnswer']."<br />";
             /*
             foreach ($pdo->query($sql2) as $row2) {
@@ -62,24 +63,88 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
         if(isset($_POST['addquestion']))
         {
 
-            if(isset($_POST['question']))
-            {
+            
 
                 if(!empty($_POST['question']))
                 {
                 
                     $question = $_POST['question'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Question Missing')</script> ";  
+                }
+                if(!empty($_POST['answera']))
+                {
+                
+                    $answera = $_POST['answera'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Answer A Missing')</script> ";  
+                }
+                if(!empty($_POST['answerb']))
+                {
+                
+                    $answerb = $_POST['answerb'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Answer B Missing')</script> ";  
+                }
+                if(!empty($_POST['answerc']))
+                {
+                
+                    $answerc = $_POST['answerc'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Answer C Missing')</script> ";  
+                }
+                if(!empty($_POST['answerd']))
+                {
+                
+                    $answerd = $_POST['answerd'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Answer D Missing')</script> ";  
+                }
+                if(!empty($_POST['correct']))
+                {
+                
+                    $correct = $_POST['correct'];
+                }
+                else
+                {
+                    echo'Question Missing';
+                    echo "<script>alert('Correct Answer Missing')</script> ";  
+                }
+
+
+                if(!empty($_POST['question']) && !empty($_POST['answera']) && !empty($_POST['answerb']) 
+                && !empty($_POST['answerc'])  && !empty($_POST['answerd']) && !empty($_POST['correct'])   )
+                {
+               
+               
+               
+               
                 
                 
             
                     //Get last ID in Table
-                    $stmt = $pdo->query("SELECT * FROM Questions ORDER BY id DESC LIMIT 1");
+                    $stmt = $pdo->query("SELECT * FROM Questions ORDER BY QuestionIndex DESC LIMIT 1");
                     $user = $stmt->fetch();
-                    $questionID = $user['id'];
+                    $questionID = $user['QuestionIndex'];
 
                         //Create Insert with new question
                     $sql = 'INSERT INTO Questions(Question, Status, QuestionIndex) VALUES(:question, :status, :id)';
-                    echo $lastID;
+                    echo $questionID;
                     $statement = $pdo->prepare($sql);
 
                     $statement->execute([
@@ -88,19 +153,35 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
                         ':id' => $questionID+1
                     ]);
 
+                    //Create Insert with new question
+                    $sql2 = 'INSERT INTO Answers(QuestionIndex, Answer_A, Answer_B, Answer_C, Answer_D, CorrectAnswer) 
+                    VALUES(:id, :answera, :answerb, :answerc, :answerd, :correct )';
+                    $statement = $pdo->prepare($sql2);
+
+                    $statement->execute([
+                        ':id' => $questionID+1,
+                        ':answera' => $answera,
+                        ':answerb' => $answerb,
+                        ':answerc' => $answerc,
+                        ':answerd' => $answerd,
+                        ':correct' => $correct
+                    ]);
+
+
+
                     $publisher_id = $pdo->lastInsertId();
 
                     echo 'The publisher id ' . $publisher_id . ' was inserted';
-                }
-            }
-
-            else
-            {
-                echo'Question Missing';
-                echo "<script>alert('Question Missing')</script> ";  
-            }
                 
-               
+            
+
+                }
+                
+                else
+                {
+                    echo'Field Information Missing';
+                    echo "<script>alert('Please fill out all the fields')</script> ";  
+                }
             
         
         }
