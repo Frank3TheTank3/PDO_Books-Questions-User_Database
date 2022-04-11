@@ -26,11 +26,11 @@ if (isset($_POST['go'])) {
         echo '</tr>';
     }
     echo '</tr></table>';
-        
+    echo "<script> showButtonMenu()</script>";
     
     echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-    echo "<script> toggleAddBooks()</script>";
+    
 
     /*
             echo "<script> var element = document.getElementById('addbook');
@@ -42,6 +42,12 @@ if (isset($_POST['go'])) {
             echo "<script> var element = document.getElementById('adduser');
             element.classList.add('d-none');</script>";
             */
+}
+
+if (isset($_POST['add'])) {
+    
+    echo "<script> toggleAddBooks()</script>";
+    echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 }
 
 
@@ -67,9 +73,9 @@ if (isset($_POST['orderbytitel'])) {
         echo '</tr>';
     }
     echo '</tr></table>';
+    echo "<script> showButtonMenu()</script>";
     echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-    echo "<script> toggleAddBooks()</script>";
 }
 
 if (isset($_POST['orderbyheight'])) {
@@ -92,9 +98,9 @@ if (isset($_POST['orderbyheight'])) {
         echo '</tr>';
     }
     echo '</tr></table>';
+    echo "<script> showButtonMenu()</script>";
     echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-    echo "<script> toggleAddBooks()</script>";
 }
 
 if (isset($_POST['addtitel'])) {
@@ -168,7 +174,7 @@ if (isset($_POST['addtitel'])) {
         }
         echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-        echo "<script> toggleAddBooks()</script>";
+        //echo "<script> toggleAddBooks()</script>";
         unset($_POST);
         $_POST = array();
         session_unset();

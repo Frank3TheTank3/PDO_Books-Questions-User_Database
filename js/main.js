@@ -88,6 +88,25 @@ function hideButtonMenu(){
 
 }
 
+function showAddMenu(){
+
+    var element = document.getElementById('addmenu');
+    element.classList.remove('d-none');
+    hideContact();
+
+}
+
+
+function hideAddMenu(){
+
+    var element = document.getElementById('addmenu');
+    element.classList.add('d-none');
+    hideContact();
+    toggleCloseAll();
+
+}
+
+
 
 function showContact(){
     toggleCloseAll();

@@ -29,7 +29,7 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
             echo '<td>' . $row['Answer_B'] . '</td>';
             echo '<td>' . $row['Answer_C'] . '</td>';
             echo '<td>' . $row['Answer_D'] . '</td>';
-            echo '<td>' . 'Correct Answer: ' . $row['CorrectAnswer'] . '</td>';
+            echo '<td>' . $row['CorrectAnswer'] . '</td>';
             echo '</tr>';
             }
         
@@ -54,12 +54,17 @@ foreach ($pdo->query($sql) as $row) {
             //echo '</div>';
             
 
-            
+            echo "<script> showButtonMenu()</script>";
          
             echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-            echo "<script> toggleAddQuestion()</script>";
+        
 
+        }
+
+        if (isset($_POST['addQuestions'])) {
+            echo "<script> toggleAddQuestion()</script>";
+            echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
         }
 
 
@@ -175,7 +180,7 @@ foreach ($pdo->query($sql) as $row) {
 
                     $publisher_id = $pdo->lastInsertId();
 
-                    echo "<script> toggleAddQuestion()</script>";
+                   // echo "<script> toggleAddQuestion()</script>";
                     echo 'The question number ' . $publisher_id . ' was added to the database';
                 
             

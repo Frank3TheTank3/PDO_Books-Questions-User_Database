@@ -1,7 +1,9 @@
+
+
 <?php
+
 include('docker/php/header.php');
 ?>
-
 
 
 
@@ -15,7 +17,7 @@ include('docker/php/header.php');
     <input class='btn btn-primary m-4' type='password' name='loguserpw' id='loguserpw' value=''></input>
     <input class='btn btn-primary m-4' type='submit' name='login' id='login' value='Login User'></input>
 </div>
-<!-- Books Buttons-->
+<!-- Database Menu Buttons-->
     <div id='buttonmenu' class='d-none d-flex align-items-center justify-content-center '>
         <input class='btn btn-primary m-4' type='submit' name='go' id='go' value='Open Books'></input>
         <input class='btn btn-secondary m-4' type='submit' name='orderbytitel' id='orderbytitel' value='Order by Titel'></input>
@@ -27,7 +29,21 @@ include('docker/php/header.php');
         <!-- Users Buttons-->
         <input class='btn btn-primary m-4' type='submit' name='goUsers' id='goUsers' value='Open Users'></input>
         <input class='btn btn-danger m-4' type='submit' name='resetall' id='resetall' value='Logout'></input>
+        </div>
+        <!-- Database Add Buttons-->
+    <div id='addmenu' class=' d-flex align-items-center justify-content-center '>
+         <!-- Add Buttons-->
+        <input class='btn btn-primary m-4' type='submit' name='add' id='add' value='Add a Book'></input>
+
+        <!-- Add Questions-->
+        <input class='btn btn-primary m-4' type='submit' name='addQuestions' id='addQuestions' value='Add a Question'></input>
+
+        <!-- Add Users-->
+        <input class='btn btn-primary m-4' type='submit' name='addUsers' id='addUsers' value='Add a User'></input>
+ 
     </div>
+
+
 
     <!-- Add Book -->
     <div id='addbook' class='d-none flex-column justify-content-center container p-5 my-5 bg-success text-white'>

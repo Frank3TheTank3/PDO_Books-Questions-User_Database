@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 //Start PDO Object - My SQL Login to database
 
@@ -14,6 +13,8 @@ if (isset($_POST['resetall'])) {
     session_unset();
     echo "<script> toggleCloseAll()</script>";
     $_SESSION['loggedin'] = false;
+    echo "<script> hideAddMenu()</script>";
+
 }
 
 //If set show users
@@ -35,14 +36,17 @@ function showAllUsers()
     echo $row['Status']."<br /><br />";
     echo '</div>';
     }
-    
+    echo "<script> showButtonMenu()</script>";
     echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
-    echo "<script> toggleAddUser()</script>";
+    
     
 
 
 }
-
+if (isset($_POST['addUsers'])) {
+    echo "<script> toggleAddUser()</script>";
+    echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
+}
 
 //If set add user
         if(isset($_POST['adduser'])){
@@ -83,6 +87,7 @@ function showAllUsers()
             
 //Login User
             if(isset($_POST['login'])){
+                $_SESSION['loggedin']  = true;
                 if(isset($_POST['logusername'])){
                     
                     $UserName = $_POST['logusername'];
@@ -116,10 +121,11 @@ function showAllUsers()
                         echo '<div class="container  p-5 my-5 bg-primary text-white ">';
                         echo 'The user ' . $userpassName  . ' with the password ' .  $userpassPW  . ' was logged in';
                         echo '</div>';
-                        echo "<script> toggleAddUser()</script>";
+                       // echo "<script> toggleAddUser()</script>";
 
                         echo "<script> showButtonMenu()</script>";
                         echo "<script> hideContact()</script>";
+                        
                     }
 
                     else
