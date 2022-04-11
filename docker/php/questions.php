@@ -2,9 +2,7 @@
 
 //Start PDO Object - My SQL Login to database
 $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
-        $sql = "SELECT * FROM Questions";
-
-        $sql2 = "SELECT * FROM Answers WHERE QuestionIndex = 1";
+      
 
         $sql3 = "SELECT * FROM Questions, Answers WHERE Questions.QuestionIndex = Answers.QuestionIndex";
         
@@ -12,8 +10,32 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
 //If set show questions
     if(isset($_POST['goQuestions'])){
         
+            
+            echo "<table style='right: 20%' width='1000px' ><tr>";
+            echo '<th>Question Number</th>';
+            echo '<th>Question Status</th>';
+            echo '<th>Question</th>';
+            echo '<th>Answer A</th>';
+            echo '<th>Answer B</th>';
+            echo '<th>Answer C</th>';
+            echo '<th>Answer D</th>';
+            echo '<th>Correct Answer</th>';
             foreach ($pdo->query($sql3) as $row) {
-            echo '<div class="container  p-5 my-5 bg-primary text-white ">';
+            echo '<tr>';
+            echo '<td>' . 'Question Number: ' . $row['QuestionIndex'] . '</td>';
+            echo '<td>' . 'Question Status: ' . $row['Status'] . '</td>';
+            echo '<td>' . $row['Question'] . '</td>';
+            echo '<td>' . $row['Answer_A'] . '</td>';
+            echo '<td>' . $row['Answer_B'] . '</td>';
+            echo '<td>' . $row['Answer_C'] . '</td>';
+            echo '<td>' . $row['Answer_D'] . '</td>';
+            echo '<td>' . 'Correct Answer: ' . $row['CorrectAnswer'] . '</td>';
+            echo '</tr>';
+            }
+        
+
+            /*
+foreach ($pdo->query($sql) as $row) {
             echo 'Question Number: ' . $row['QuestionIndex']."<br /><br />";
             echo 'Question Status: ' . $row['Status']."<br /><br />";
             echo $row['Question']."<br /><br />";
@@ -22,7 +44,6 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
             echo $row['Answer_C']."<br />";
             echo $row['Answer_D']."<br /><br />";
             echo 'Correct Answer: ' . $row['CorrectAnswer']."<br />";
-            /*
             foreach ($pdo->query($sql2) as $row2) {
                 echo $row2['Answer_A']."<br />";
                 echo $row2['Answer_B']."<br />";
@@ -30,34 +51,17 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
                 
                 }
                 */
-            echo '</div>';
+            //echo '</div>';
             
 
-            }
+            
          
             echo "<script> document.getElementById('viewer').scrollIntoView();</script>";
 
-            echo "<script> var element = document.getElementById('addquestion');
-            element.classList.remove('d-none');</script>";
-
-            echo "<script> var element = document.getElementById('addbook');
-            element.classList.add('d-none');</script>";
-
-            echo "<script> var element = document.getElementById('adduser');
-            element.classList.add('d-none');</script>";
+            echo "<script> toggleAddQuestion()</script>";
 
         }
 
-//If set reset questions
-        if(isset($_POST['resetQuestions'])){
-        
-            unset($_POST);
-            $_POST = array();
-            session_unset();
-            echo 'Page reset' . "<br>";
-            echo "<script> toggleCloseAll()</script>";
-
-        }
 
 //If set add questions
         if(isset($_POST['addquestion']))
@@ -171,7 +175,8 @@ $pdo = new PDO('mysql:host=mysql;dbname=library', 'webDev', 'opport2022');
 
                     $publisher_id = $pdo->lastInsertId();
 
-                    echo 'The publisher id ' . $publisher_id . ' was inserted';
+                    echo "<script> toggleAddQuestion()</script>";
+                    echo 'The question number ' . $publisher_id . ' was added to the database';
                 
             
 
