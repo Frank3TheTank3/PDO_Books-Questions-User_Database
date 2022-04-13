@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../css/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    
-   
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Franks Database</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+
+
 </head>
 
 
-  <body data-bs-spy="scroll" data-bs-target=".navbar">
-
- 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+<body data-bs-spy="scroll" data-bs-target=".navbar">
 
 
-        <div id="navcontainer" class="container">
-            <img style="width: 100px" src="../../img/logo.jpg" alt="" class="navbar-brand logo-image">
-          <button class="navbar-toggler" type="button" 
-          data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-          aria-controls="navbarSupportedContent" aria-expanded="false" 
-          aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-    
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:hideButtonMenu()">Home</a>
-              </li>
-              <?php
-              $_SESSION['loggedin'] = true;
-              if($_SESSION['loggedin']== true)
-              {
-                echo'
+  <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+
+    <!--- Header Table for Logo & Name --->
+
+    <img style="width:200px;" src="../../img/logo2.png" alt="" class="navbar-brand logo-image"></th>
+    <p class="h1 text-black">Data HQ</p>
+
+
+
+    <div id="navcontainer" class="container">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:hideButtonMenu()">Home</a>
+          </li>
+          <?php
+          $_SESSION['loggedin'] = true;
+          if ($_SESSION['loggedin'] == true) {
+            echo '
               <li class="nav-item">
                 <a class="nav-link" href="javascript:showButtonMenu()">Databases</a>
               </li>';
-              }
-             ?>
-              
-              <li class="nav-item">
-                <a class="nav-link"  href="javascript:showContact()">Contact</a>
-              </li>
-             
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success bg-white" type="submit">Search</button>
-            </form>
-            
-          </div>
-        </div>
-    </nav>
+          }
+          ?>
 
-    <section id="home">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:showContact()">Contact</a>
+          </li>
 
-        <div class="container text-center">
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success bg-white" type="submit">Search</button>
+        </form>
 
-            <div class="row justify-content-center">
+      </div>
+    </div>
+  </nav>
 
-            <div class="col-md-10">
-                <h1 class="text-white display-4">The most reliable Databases in the world</h1>
-                <p class="text-white"> We at Opportunity have perfected the art of efficiently
-                    running databases for our clients.
-                </p>
+  <section id="home">
 
+    <div class="container text-center">
 
-            </div>
+      <div class="row justify-content-center">
 
-
-            </div>
-
+        <div class="col-md-10">
+          <h1 class="text-white display-4">The most reliable Databases in the world</h1>
+          <p class="text-white"> We at Opportunity have perfected the art of efficiently
+            running databases for our clients.
+          </p>
 
 
         </div>
 
 
+      </div>
 
-    
-    </section>  
+
+
+    </div>
+
+
+
+
+  </section>
